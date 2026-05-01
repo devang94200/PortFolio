@@ -1,67 +1,111 @@
 import React from "react";
+import { FaCode, FaLightbulb, FaRocket, FaGraduationCap, FaBolt, FaDatabase } from "react-icons/fa";
+import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from "react-icons/si";
+
+const stats = [
+  { label: "Projects Built", value: "10+" },
+  { label: "Technologies", value: "15+" },
+  { label: "Years Learning", value: "3+" },
+  { label: "GitHub Repos", value: "20+" },
+];
+
+const highlights = [
+  { icon: <FaCode className="text-indigo-400" />, title: "Full-Stack Development", desc: "Building scalable MERN applications with clean architecture, REST APIs, and JWT auth." },
+  { icon: <FaBolt className="text-yellow-400" />, title: "Real-Time Systems", desc: "Implementing WebSockets for instant data transfer and live features, as seen in SharePod." },
+  { icon: <FaDatabase className="text-pink-400" />, title: "Data-Driven Platforms", desc: "Developing complex platforms with data analytics and external API integrations like AgriConnect." },
+  { icon: <FaGraduationCap className="text-emerald-400" />, title: "Continuous Learning", desc: "Always exploring new tech—from modern UI frameworks to cloud deployment strategies." },
+];
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="min-h-screen py-24 px-6 bg-gradient-to-br from-black via-gray-900 to-black text-white flex flex-col items-center justify-center"
-    >
-      <div className="max-w-4xl w-full text-center space-y-12">
-        <h2 className="text-4xl font-bold tracking-wide text-gradient bg-gradient-to-r from-emerald-400 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
-          About Me
-        </h2>
+    <section className="min-h-screen py-20 px-4 sm:px-6 section-bg flex items-start justify-center">
+      <div className="max-w-6xl w-full mx-auto">
+        {/* Header */}
+        <div className="text-center mb-14" data-aos="fade-down">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-indigo-400 glass rounded-full border border-indigo-500/20 mb-4">
+            Who I Am
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-theme-primary">
+            About <span className="gradient-text">Me</span>
+          </h2>
+        </div>
 
-        <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-          Hello! I’m <span className="text-white font-semibold">Devang Hingladiya</span>, a full-stack <span className="text-blue-400 font-medium">MERN Developer</span> with a passion for building smart, scalable, and interactive digital experiences.
-          Whether it’s a sleek web application, an innovative IoT solution, or a dynamic UI concept — I bring ideas to life through clean code, thoughtful design, and a deep love for technology.
-        </p>
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-10 items-start mb-14">
+          {/* Bio */}
+          <div data-aos="fade-right" data-aos-delay="100">
+            <div className="glass rounded-2xl p-7 border border-white/5 h-full">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center">
+                  <span className="text-2xl">👋</span>
+                </div>
+                <div>
+                  <p className="text-xs text-theme-subtle font-medium uppercase tracking-wider">Developer</p>
+                  <h3 className="text-xl font-bold text-theme-primary">Devang Hingladiya</h3>
+                </div>
+              </div>
+              <p className="text-theme-muted leading-relaxed mb-4">
+                I'm a passionate <span className="text-indigo-400 font-semibold">Full-Stack MERN Developer</span> who enjoys building scalable, efficient, and interactive web applications. I focus on turning ideas into real-world solutions using clean code, practical design, and a problem-solving mindset.
+              </p>
+              <p className="text-theme-subtle leading-relaxed">
+                My journey is fueled by curiosity and purpose.I’ve worked on projects like<span className="text-theme-primary font-medium">AgriConnect</span>, where I built features that address real user needs, along with responsive web applications that prioritize performance and usability. I’m comfortable working across the full stack—from designing intuitive frontends in React to building robust backend APIs with Node.js, Express, and MongoDB.
+              </p>
 
-        <p className="text-lg text-gray-400 leading-loose max-w-3xl mx-auto">
-          With hands-on experience in <span className="text-white">MongoDB</span>, <span className="text-white">Express.js</span>, <span className="text-white">React.js</span>, and <span className="text-white">Node.js</span>, I specialize in crafting seamless user interfaces and building robust backend systems. 
-          I love blending logic with creativity — making interfaces intuitive, animations engaging, and systems efficient.
-        </p>
-
-        <p className="text-lg text-gray-400 leading-loose max-w-3xl mx-auto">
-          My journey is fueled by curiosity and purpose. From developing smart automation projects like <span className="text-white">Smart Curtains</span> with sunlight detection, to designing responsive portfolios with custom animations and interaction effects — I aim to build solutions that are not only functional, but meaningful.
-        </p>
-
-        <div className="text-left space-y-16 mt-12">
-          <div>
-            <h3 className="text-2xl font-semibold text-white underline underline-offset-4 decoration-purple-500 mb-4">
-              💼 What I Do Best:
-            </h3>
-            <ul className="text-gray-300 space-y-4 list-disc list-inside">
-              <li><strong className="text-white">Full-Stack Web Development</strong> using the MERN stack</li>
-              <li><strong className="text-white">UI/UX Integration</strong> with modern frameworks and motion effects</li>
-              <li><strong className="text-white">IoT & Smart Tech Projects</strong> combining hardware and web tech</li>
-              <li><strong className="text-white">Animated Interfaces</strong> using GSAP & Framer Motion</li>
-              <li><strong className="text-white">Clean, Scalable Code</strong> architecture for maintainable solutions</li>
-            </ul>
+              {/* Tech stack pills */}
+              <div className="flex flex-wrap gap-2 mt-6">
+                {[
+                  { Icon: SiMongodb, label: "MongoDB", color: "text-green-400" },
+                  { Icon: SiExpress, label: "Express", color: "text-slate-300" },
+                  { Icon: SiReact, label: "React.js", color: "text-blue-400" },
+                  { Icon: SiNodedotjs, label: "Node.js", color: "text-green-500" },
+                ].map(({ Icon, label, color }) => (
+                  <span key={label} className={`flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs font-medium ${color} border border-white/5`}>
+                    <Icon size={13} />
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h3 className="text-2xl font-semibold text-white underline underline-offset-4 decoration-purple-500 mb-4">
-              🛠 Tech Stack & Tools I Love:
-            </h3>
-            <p className="text-gray-300 text-xl leading-relaxed">
-              React.js • Node.js • Express • MongoDB • Tailwind CSS • Git • Firebase • JavaScript (ES6+) • REST APIs • WebSockets • IoT Sensors
-            </p>
-          </div>
+          {/* Stats */}
+          <div data-aos="fade-left" data-aos-delay="200">
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              {stats.map(({ label, value }) => (
+                <div key={label} className="glass rounded-2xl p-5 text-center border border-white/5 glass-hover">
+                  <p className="text-3xl font-extrabold gradient-text mb-1">{value}</p>
+                  <p className="text-xs text-theme-subtle font-medium uppercase tracking-wider">{label}</p>
+                </div>
+              ))}
+            </div>
 
-          <div>
-            <h3 className="text-2xl font-semibold text-white underline underline-offset-4 decoration-purple-500 mb-4">
-              🚀 Always Exploring:
-            </h3>
-            <p className="text-gray-300 text-xl leading-relaxed">
-              Currently diving deeper into AI integrations, real-time web apps, and next-gen interfaces that blend technology with creativity. My goal? 
-              To develop experiences that feel <span className="text-white">alive</span>, <span className="text-white">intelligent</span>, and <span className="text-white">purposeful</span>.
-            </p>
+            {/* Quote */}
+            <div className="glass rounded-2xl p-5 border border-indigo-500/15">
+              <p className="text-theme-muted italic text-sm leading-relaxed">
+                "My goal is to develop experiences that feel <span className="text-theme-primary font-semibold">alive</span>, <span className="text-theme-primary font-semibold">intelligent</span>, and <span className="text-theme-primary font-semibold">purposeful</span>. Currently exploring AI integrations and real-time web apps."
+              </p>
+              <p className="text-indigo-400 font-semibold text-sm mt-3">— Devang Hingladiya</p>
+            </div>
           </div>
         </div>
 
-        <p className="text-center mt-16 text-2xl text-purple-400 font-semibold">
-          Let’s innovate and create something remarkable. 🌐✨
-        </p>
+        {/* Highlights Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {highlights.map(({ icon, title, desc }, i) => (
+            <div
+              key={title}
+              className="glass rounded-2xl p-5 border border-white/5 glass-hover"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+            >
+              <div className="w-10 h-10 rounded-xl glass flex items-center justify-center mb-4 text-lg">
+                {icon}
+              </div>
+              <h4 className="text-theme-primary font-semibold text-sm mb-2">{title}</h4>
+              <p className="text-theme-subtle text-xs leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
