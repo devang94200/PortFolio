@@ -7,9 +7,9 @@ export const skills = [
   { name: "HTML5", level: 90 },
   { name: "CSS3", level: 95 },
   { name: "Tailwind CSS", level: 90 },
+  { name: "Bootstrap", level: 88 },
   { name: "Git & GitHub", level: 90 },
-  { name: "Python", level: 71 },      // 🔥 New Skill
-  { name: "Angular", level: 70 },     // 🔥 New Skill
+     // 🔥 New Skill
   { name: "Postman", level: 82 },
  
 ];
