@@ -10,6 +10,7 @@ import {
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import AOS from "aos";
+import Card3D from "./Card3D";
 
 const categories = [
   {
@@ -111,31 +112,35 @@ const Skills = () => {
           {categories.map((cat, ci) => (
             <div
               key={cat.title}
-              className={`glass rounded-2xl p-5 border ${cat.border} bg-gradient-to-br ${cat.accent}`}
               data-aos="fade-up"
               data-aos-delay={ci * 100}
+              className="h-full"
             >
-              {/* Category Header */}
-              <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${cat.badge} mb-5`}>
-                {cat.title}
-              </div>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-3 mt-auto">
-                {cat.skills.map((skill, si) => (
-                  <div
-                    key={skill.name}
-                    className="skill-card p-3 flex-1 min-w-[100px] flex flex-col items-center justify-center gap-2"
-                    data-aos="zoom-in"
-                    data-aos-delay={ci * 100 + si * 60}
-                  >
-                    <span className={`text-3xl ${skill.color}`}>{skill.icon}</span>
-                    <span className="text-xs font-medium text-theme-muted text-center leading-tight">
-                      {skill.name}
-                    </span>
+              <Card3D intensity={15} scale={1.02} className="h-full">
+                <div className={`glass rounded-2xl p-5 border ${cat.border} bg-gradient-to-br ${cat.accent} h-full flex flex-col`}>
+                  {/* Category Header */}
+                  <div className={`inline-flex self-start items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${cat.badge} mb-5`}>
+                    {cat.title}
                   </div>
-                ))}
-              </div>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-3 mt-auto">
+                    {cat.skills.map((skill, si) => (
+                      <div
+                        key={skill.name}
+                        className="skill-card p-3 flex-1 min-w-[100px] flex flex-col items-center justify-center gap-2"
+                        data-aos="zoom-in"
+                        data-aos-delay={ci * 100 + si * 60}
+                      >
+                        <span className={`text-3xl ${skill.color}`}>{skill.icon}</span>
+                        <span className="text-xs font-medium text-theme-muted text-center leading-tight">
+                          {skill.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Card3D>
             </div>
           ))}
         </div>
