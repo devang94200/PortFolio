@@ -2,6 +2,7 @@ import React from "react";
 import { projects } from "../utils/projectsData";
 import { FiExternalLink } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
+import Card3D from "./Card3D";
 
 const Projects = () => {
   return (
@@ -33,19 +34,21 @@ const Projects = () => {
                 {/* Ambient glow behind image */}
                 <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 
-                <div 
-                  className="glass rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] p-2 sm:p-6 lg:p-8 relative border transition-all duration-700 lg:group-hover:-translate-y-3 lg:group-hover:rotate-1 lg:group-hover:shadow-[0_30px_60px_rgb(99,102,241,0.2)] overflow-hidden" 
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  {/* Subtle inner gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 pointer-events-none" />
-                  
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-auto object-contain rounded-xl sm:rounded-2xl relative z-10 transition-transform duration-700 lg:group-hover:scale-[1.03] drop-shadow-xl"
-                  />
-                </div>
+                <Card3D intensity={12} scale={1.03}>
+                  <div 
+                    className="glass rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] p-2 sm:p-6 lg:p-8 relative border overflow-hidden" 
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    {/* Subtle inner gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 pointer-events-none" />
+                    
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-auto object-contain rounded-xl sm:rounded-2xl relative z-10 drop-shadow-xl"
+                    />
+                  </div>
+                </Card3D>
               </div>
 
               {/* Content Area */}

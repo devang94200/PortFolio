@@ -9,6 +9,8 @@ import Skills from "../components/Skills";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import Canvas3DBg from "../components/Canvas3DBg";
+import FloatingEmojis from "../components/FloatingEmojis";
 
 const Home = () => {
   useEffect(() => {
@@ -21,7 +23,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full" style={{ background: "var(--bg-primary)" }}>
+    <div className="w-full relative overflow-hidden gradient-mesh-bg">
+      <Canvas3DBg />
+      <FloatingEmojis />
       <Navbar />
       <section id="home"><Hero /></section>
       <section id="about"><About /></section>

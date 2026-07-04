@@ -37,48 +37,40 @@ const Hero = () => {
     <section className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden section-bg pt-24 sm:pt-0 pb-10 sm:pb-0">
       {/* Ambient blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-purple-600/8 blur-[140px] animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] rounded-full bg-cyan-600/6 blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
+        <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-pink-500/10 blur-[130px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-cyan-500/8 blur-[140px] animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-[35%] left-[55%] w-[400px] h-[400px] rounded-full bg-yellow-500/6 blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
       </div>
 
-      {/* Grid lines */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(99,102,241,0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(99,102,241,0.5) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Cyber Grid 3D floor */}
+      <div className="cyber-grid" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-8"
+        <div className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full glass border border-pink-500/20 text-pink-300 text-sm font-bold uppercase tracking-widest mb-8 shadow-[0_0_15px_rgba(236,72,153,0.1)]"
           data-aos="fade-down" data-aos-delay="100">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Available for Opportunities
+          <span>🚀</span> Available for Opportunities <span>⚡</span>
         </div>
 
         {/* Name */}
         <h1 className="text-5xl sm:text-6xl lg:text-8xl font-extrabold text-theme-primary leading-none tracking-tight mb-4"
           data-aos="fade-up" data-aos-delay="200">
           Hi, I'm{" "}
-          <span className="gradient-text block sm:inline">Devang</span>
+          <span className="gradient-text block sm:inline">Devang 💻</span>
         </h1>
 
         {/* Typewriter Role */}
         <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-theme-muted mb-6 h-10 flex items-center justify-center"
           data-aos="fade-up" data-aos-delay="300">
           <span className="gradient-text-cyan">{displayed}</span>
-          <span className="ml-0.5 w-0.5 h-7 bg-indigo-400 inline-block animate-pulse" />
+          <span className="ml-0.5 w-0.5 h-7 bg-cyan-400 inline-block animate-pulse" />
         </div>
 
         {/* Description */}
         <p className="text-base sm:text-lg text-theme-subtle max-w-2xl mx-auto mb-10 leading-relaxed"
           data-aos="fade-up" data-aos-delay="400">
-          I craft pixel-perfect, high-performance digital experiences from concept to deployment.
-          Specializing in the MERN stack with a passion for clean design and scalable architecture.
+          I craft pixel-perfect, high-performance digital experiences from concept to deployment. 🎨
+          Specializing in the MERN stack with a passion for clean design and scalable architecture. 🪐
         </p>
 
         {/* CTA Buttons */}

@@ -269,3 +269,69 @@ body {
 @media (max-width: 640px) {
   .section-title { font-size: 2rem; }
 }
+
+/* ───────────────────────────────────────────
+   3D & DYNAMIC STYLES
+   ─────────────────────────────────────────── */
+.transform-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.cyber-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: perspective(600px) rotateX(65deg) translateY(-20%) translateZ(-150px);
+  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8) 80%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8) 80%);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+/* ───────────────────────────────────────────
+   COLORFUL ANIMATIONS & SHIFTING GRADIENTS
+   ─────────────────────────────────────────── */
+@keyframes float-emoji {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes spin-emoji {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mesh-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.float-emoji-slow {
+  animation: float-emoji 6s ease-in-out infinite;
+}
+
+.spin-emoji-slow {
+  animation: spin-emoji 20s linear infinite;
+}
+
+.gradient-mesh-bg {
+  background: linear-gradient(-45deg, #080c14, #0f1225, #1c0b24, #080c14);
+  background-size: 400% 400%;
+  animation: mesh-shift 15s ease infinite;
+}
+
+[data-theme="light"] .gradient-mesh-bg {
+  background: linear-gradient(-45deg, #ffffff, #f0f3ff, #fff0f5, #ffffff);
+  background-size: 400% 400%;
+  animation: mesh-shift 15s ease infinite;
+}
