@@ -3,6 +3,7 @@ import {
   FaDownload, FaEye, FaEyeSlash, FaFilePdf,
   FaGraduationCap, FaBriefcase, FaCode,
 } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const highlights = [
   { icon: <FaGraduationCap />, label: "Education",   value: "B.Tech in Information Technology" },
@@ -10,119 +11,111 @@ const highlights = [
   { icon: <FaCode />,          label: "Stack",       value: "Full-Stack MERN Developer"        },
 ];
 
-/* ─── Inline Resume Preview ─── */
 const ResumePreview = () => (
-  <div
-    className="rounded-2xl overflow-hidden mt-6 border relative w-full h-[60vh] md:h-[800px]"
-    style={{ borderColor: "var(--border)", background: "var(--bg-primary)" }}
-    data-aos="fade-up"
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 20 }}
+    transition={{ duration: 0.4 }}
+    className="rounded-3xl overflow-hidden mt-6 border border-theme relative w-full h-[60vh] md:h-[800px] clay bg-[var(--bg-card)] p-2"
   >
     <iframe
       src="/Devang_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
       width="100%"
       height="100%"
-      className="absolute inset-0"
+      className="rounded-2xl"
       title="Resume Preview"
       style={{ border: "none" }}
     />
-  </div>
+  </motion.div>
 );
 
-const SectionTitle = ({ children }) => (
-  <div className="flex items-center gap-3">
-    <h3 className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--text-subtle)" }}>{children}</h3>
-    <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
-  </div>
-);
-
-/* ─── Main Resume Section ─── */
 const Resume = () => {
   const [showPreview, setShowPreview] = useState(false);
 
   return (
-    <section id="resume" className="py-24 px-4 sm:px-6 section-bg">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-24 px-4 sm:px-6 flex items-start justify-center">
+      <div className="max-w-4xl w-full mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-14" data-aos="fade-down">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase rounded-full border mb-4"
-            style={{ color: "#818cf8", background: "rgba(99,102,241,0.1)", borderColor: "rgba(99,102,241,0.25)" }}>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-[var(--accent-color)] clay bg-[var(--bg-card)] mb-4">
             My Resume
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold" style={{ color: "var(--text-primary)" }}>
+          <h2 className="text-4xl sm:text-5xl font-black text-theme-primary">
             Download <span className="gradient-text">CV</span>
           </h2>
-          <p className="mt-4 max-w-xl mx-auto text-sm leading-relaxed" style={{ color: "var(--text-subtle)" }}>
+          <p className="mt-4 max-w-xl mx-auto text-sm leading-relaxed text-theme-muted">
             Get a detailed overview of my skills, experience, education, and projects in one document.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Card */}
-        <div className="glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-
+        {/* Card Container */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="clay overflow-hidden bg-[var(--bg-card)]"
+        >
           {/* Banner */}
-          <div className="relative h-32 bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-600 flex items-center px-8 overflow-hidden">
-            <div className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage: `radial-gradient(circle at 20% 50%, white 1px, transparent 1px),
-                                  radial-gradient(circle at 80% 20%, white 1px, transparent 1px)`,
-                backgroundSize: "30px 30px",
-              }}
-            />
-            <FaFilePdf className="text-white/30 absolute right-8 bottom-2" size={80} />
+          <div className="relative h-32 bg-gradient-to-r from-[#d5ab85] to-[#c4956a] flex items-center px-8 overflow-hidden">
+            <FaFilePdf className="text-white/20 absolute right-8 bottom-2" size={80} />
             <div className="relative z-10">
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-1">Curriculum Vitae</p>
-              <h3 className="text-white text-2xl font-extrabold">Devang Hingladiya</h3>
-              <p className="text-white/70 text-sm mt-0.5">Full-Stack MERN Developer</p>
+              <p className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Curriculum Vitae</p>
+              <h3 className="text-white text-2xl font-black">Devang Hingladiya</h3>
+              <p className="text-white/80 text-sm mt-0.5">Full-Stack MERN Developer</p>
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x" style={{ borderColor: "var(--border)" }}>
-            {highlights.map(({ icon, label, value }, i) => (
-              <div key={label} className="flex items-center gap-3 px-6 py-5"
-                data-aos="fade-up" data-aos-delay={100 + i * 80}>
-                <span className="text-indigo-400 text-lg">{icon}</span>
+          {/* Highlights */}
+          <div className="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x border-b border-theme divide-theme">
+            {highlights.map(({ icon, label, value }) => (
+              <div key={label} className="flex items-center gap-3 px-6 py-5">
+                <span className="text-[var(--accent-color)] text-lg">{icon}</span>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-subtle)" }}>{label}</p>
-                  <p className="text-sm font-medium mt-0.5" style={{ color: "var(--text-primary)" }}>{value}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-theme-subtle">{label}</p>
+                  <p className="text-sm font-semibold mt-0.5 text-theme-primary">{value}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="h-px mx-6" style={{ background: "var(--border)" }} />
-
-          {/* CTA Row */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-8 py-7">
-            <p className="text-sm text-center sm:text-left mb-4 sm:mb-0" style={{ color: "var(--text-subtle)" }}>
-              Last updated: <span style={{ color: "var(--text-primary)" }} className="font-medium">April 2026</span>
-              &nbsp;·&nbsp;Format: <span style={{ color: "var(--text-primary)" }} className="font-medium">PDF</span>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-8 py-6 bg-[var(--bg-secondary)]">
+            <p className="text-xs sm:text-sm text-theme-subtle text-center sm:text-left">
+              Last updated: <span className="font-bold text-theme-primary">April 2026</span> · Format: <span className="font-bold text-theme-primary">PDF</span>
             </p>
             <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 w-full sm:w-auto">
-              {/* Toggle Preview */}
               <button
                 onClick={() => setShowPreview(p => !p)}
-                className="btn-outline flex items-center gap-2 px-5 py-2.5 text-sm"
+                className="clay-btn-outline flex items-center gap-2 px-5 py-2.5 text-sm"
               >
                 {showPreview ? <FaEyeSlash size={13} /> : <FaEye size={13} />}
                 {showPreview ? "Hide Preview" : "Preview CV"}
               </button>
-              {/* Download */}
               <a
                 href="/Devang_Resume.pdf"
                 download="Devang_Hingladiya_Resume.pdf"
-                className="btn-glow flex items-center gap-2 px-6 py-2.5 text-sm"
+                className="clay-btn flex items-center gap-2 px-6 py-2.5 text-sm"
               >
                 <FaDownload size={13} />
                 Download CV
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Inline Preview (toggle) */}
-        {showPreview && <ResumePreview />}
+        {/* Preview Frame */}
+        <AnimatePresence>
+          {showPreview && <ResumePreview />}
+        </AnimatePresence>
       </div>
     </section>
   );

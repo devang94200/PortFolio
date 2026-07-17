@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -9,23 +7,14 @@ import Skills from "../components/Skills";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import Canvas3DBg from "../components/Canvas3DBg";
-import FloatingEmojis from "../components/FloatingEmojis";
+import SpidermanBgClimber from "../components/SpidermanBgClimber";
+import SpidermanClimber from "../components/SpidermanClimber";
 
 const Home = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
   return (
-    <div className="w-full relative overflow-hidden gradient-mesh-bg">
-      <Canvas3DBg />
-      <FloatingEmojis />
+    <div className="w-full min-h-screen relative overflow-hidden bg-[var(--bg-primary)]">
+      <SpidermanBgClimber />
+      <SpidermanClimber />
       <Navbar />
       <section id="home"><Hero /></section>
       <section id="about"><About /></section>

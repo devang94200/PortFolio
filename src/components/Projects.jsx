@@ -2,109 +2,110 @@ import React from "react";
 import { projects } from "../utils/projectsData";
 import { FiExternalLink } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
-import Card3D from "./Card3D";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 section-bg flex items-start justify-center">
+    <section className="min-h-screen py-24 px-4 sm:px-6 flex items-start justify-center">
       <div className="max-w-6xl w-full mx-auto">
         {/* Header */}
-        <div className="text-center mb-14" data-aos="fade-down">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-indigo-400 glass rounded-full border border-indigo-500/20 mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-[var(--accent-color)] clay bg-[var(--bg-card)] mb-4">
             What I've Built
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-theme-primary">
+          <h2 className="text-4xl sm:text-5xl font-black text-theme-primary">
             My <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-theme-subtle mt-4 max-w-xl mx-auto text-sm leading-relaxed">
             A selection of real-world applications I've designed, developed, and shipped.
           </p>
-        </div>
+        </motion.div>
 
         {/* Projects Showcase */}
         <div className="mt-16 sm:mt-24">
           {projects.map((project, i) => (
-            <div
+            <motion.div
               key={project.id}
-              className={`flex flex-col gap-10 lg:gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} mb-24 lg:mb-40`}
-              data-aos="fade-up"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className={`flex flex-col gap-10 lg:gap-16 items-center ${
+                i % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'
+              } mb-24 lg:mb-32`}
             >
-              {/* Image Presentation Stage */}
-              <div className="w-full lg:w-1/2 relative group">
-                {/* Ambient glow behind image */}
-                <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
-                <Card3D intensity={12} scale={1.03}>
-                  <div 
-                    className="glass rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] p-2 sm:p-6 lg:p-8 relative border overflow-hidden" 
-                    style={{ borderColor: "var(--border)" }}
-                  >
-                    {/* Subtle inner gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 pointer-events-none" />
-                    
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-auto object-contain rounded-xl sm:rounded-2xl relative z-10 drop-shadow-xl"
-                    />
-                  </div>
-                </Card3D>
+              {/* Image Presentation (Smaller image size container) */}
+              <div className="w-full lg:w-5/12 flex justify-center relative group">
+                <motion.div 
+                  whileHover={{ scale: 1.04, y: -4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="clay p-4 relative overflow-hidden bg-[var(--bg-card)] max-w-sm sm:max-w-md w-full cursor-pointer"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 sm:h-56 md:h-64 object-contain rounded-2xl relative z-10 mx-auto"
+                  />
+                </motion.div>
               </div>
 
               {/* Content Area */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center relative px-2 sm:px-0 mt-4 sm:mt-0">
-                {/* Massive Watermark Number */}
-                <span 
-                  className="text-[6rem] sm:text-[8rem] lg:text-[12rem] font-black leading-none absolute top-[-3rem] sm:top-[-4rem] lg:top-[-6rem] right-0 lg:right-auto lg:left-[-2rem] opacity-[0.03] pointer-events-none select-none z-0" 
-                  style={{ color: "var(--text-primary)" }}
-                >
+              <div className="w-full lg:w-7/12 flex flex-col justify-center relative px-2 sm:px-0 mt-4 sm:mt-0">
+                {/* Watermark Number */}
+                <span className="text-[6rem] sm:text-[8rem] lg:text-[10rem] font-black leading-none absolute top-[-3rem] sm:top-[-4rem] lg:top-[-5rem] right-0 lg:right-auto lg:left-[-2rem] opacity-[0.03] pointer-events-none select-none z-0 text-theme-primary">
                   0{i + 1}
                 </span>
                 
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-theme-primary mb-4 sm:mb-6 relative z-10">
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-theme-primary mb-4 relative z-10">
                   {project.title}
                 </h3>
                 
-                <p className="text-theme-muted text-base sm:text-lg leading-relaxed mb-8 relative z-10 max-w-xl">
+                <p className="text-theme-muted text-sm sm:text-base leading-relaxed mb-6 relative z-10 max-w-xl">
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-3 mb-10 relative z-10">
-                  {project.tags.map((tag) => (
-                    <span
+                <div className="flex flex-wrap gap-2 mb-8 relative z-10">
+                  {project.tags.map((tag, idx) => (
+                    <motion.span
                       key={tag}
-                      className="px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full border glass transition-all hover:border-indigo-500/50"
-                      style={{ 
-                        color: "var(--text-primary)", 
-                        borderColor: "var(--border)"
-                      }}
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className="px-3.5 py-1.5 text-xs font-semibold uppercase tracking-widest rounded-xl border border-theme bg-[var(--bg-secondary)] text-theme-muted cursor-default transition-all hover:border-[var(--accent-color)] hover:text-theme-primary"
                     >
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
-                {/* Link / CTA */}
+                {/* CTA Link */}
                 <div className="relative z-10 flex">
                   {project.link ? (
-                    <a
+                    <motion.a
+                      whileTap={{ scale: 0.98 }}
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-glow px-8 py-3.5 text-sm sm:text-base inline-flex items-center gap-3 group/btn"
+                      className="clay-btn px-8 py-3.5 text-sm sm:text-base inline-flex items-center gap-2 group/btn"
                     >
                       Explore Project 
-                      <FiExternalLink size={18} className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
-                    </a>
+                      <FiExternalLink size={16} className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+                    </motion.a>
                   ) : (
-                    <span className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border glass text-sm sm:text-base font-semibold text-theme-subtle cursor-not-allowed">
-                      <FaLock size={15} /> Confidential Project
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-theme text-sm font-semibold text-theme-subtle cursor-not-allowed bg-[var(--bg-secondary)]">
+                      <FaLock size={13} /> Confidential Project
                     </span>
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

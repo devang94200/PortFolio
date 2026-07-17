@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowDown, FaDownload, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const roles = ["Full-Stack Developer", "MERN Stack Engineer", "Web Developer"];
 
@@ -33,68 +34,103 @@ const Hero = () => {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden section-bg pt-24 sm:pt-0 pb-10 sm:pb-0">
-      {/* Ambient blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-pink-500/10 blur-[130px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-cyan-500/8 blur-[140px] animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-[35%] left-[55%] w-[400px] h-[400px] rounded-full bg-yellow-500/6 blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
-      </div>
-
-      {/* Cyber Grid 3D floor */}
-      <div className="cyber-grid" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden py-24 sm:py-0">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center"
+      >
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4.5 py-2 rounded-full glass border border-pink-500/20 text-pink-300 text-sm font-bold uppercase tracking-widest mb-8 shadow-[0_0_15px_rgba(236,72,153,0.1)]"
-          data-aos="fade-down" data-aos-delay="100">
-          <span>🚀</span> Available for Opportunities <span>⚡</span>
-        </div>
+        <motion.div 
+          variants={itemVariants}
+          className="inline-flex items-center px-5 py-2.5 rounded-full clay bg-[var(--bg-card)] border border-white text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-8"
+        >
+          Available for Opportunities
+        </motion.div>
 
         {/* Name */}
-        <h1 className="text-5xl sm:text-6xl lg:text-8xl font-extrabold text-theme-primary leading-none tracking-tight mb-4"
-          data-aos="fade-up" data-aos-delay="200">
-          Hi, I'm{" "}
-          <span className="gradient-text block sm:inline">Devang 💻</span>
-        </h1>
+        <motion.h1 
+          variants={itemVariants}
+          className="text-5xl sm:text-6xl lg:text-7xl font-black text-theme-primary leading-tight tracking-tight mb-4"
+        >
+          Hi, I'm <span className="gradient-text block sm:inline">Devang</span>
+        </motion.h1>
 
         {/* Typewriter Role */}
-        <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-theme-muted mb-6 h-10 flex items-center justify-center"
-          data-aos="fade-up" data-aos-delay="300">
-          <span className="gradient-text-cyan">{displayed}</span>
-          <span className="ml-0.5 w-0.5 h-7 bg-cyan-400 inline-block animate-pulse" />
-        </div>
+        <motion.div 
+          variants={itemVariants}
+          className="text-lg sm:text-xl lg:text-2xl font-bold text-theme-muted mb-6 h-10 flex items-center justify-center"
+        >
+          <span className="text-[var(--accent-color)]">{displayed}</span>
+          <span className="ml-1 w-0.5 h-6 bg-[var(--accent-color)] inline-block animate-pulse" />
+        </motion.div>
 
         {/* Description */}
-        <p className="text-base sm:text-lg text-theme-subtle max-w-2xl mx-auto mb-10 leading-relaxed"
-          data-aos="fade-up" data-aos-delay="400">
-          I craft pixel-perfect, high-performance digital experiences from concept to deployment. 🎨
-          Specializing in the MERN stack with a passion for clean design and scalable architecture. 🪐
-        </p>
+        <motion.p 
+          variants={itemVariants}
+          className="text-base sm:text-lg text-theme-muted max-w-xl mx-auto mb-10 leading-relaxed"
+        >
+          I craft clean, high-performance web applications from concept to deployment.
+          Specializing in the MERN stack with a focus on simple, functional design.
+        </motion.p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-          data-aos="fade-up" data-aos-delay="500">
-          <button onClick={() => scrollTo("#projects")} className="btn-glow px-8 py-3.5 text-sm sm:text-base flex items-center gap-2">
+        <motion.div 
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+        >
+          <button 
+            onClick={() => scrollTo("#projects")} 
+            className="clay-btn px-8 py-3.5 text-sm sm:text-base flex items-center gap-2"
+          >
             <FaGithub size={16} />
             View Projects
           </button>
-          <button onClick={() => scrollTo("#contact")} className="btn-outline px-8 py-3.5 text-sm sm:text-base flex items-center gap-2">
+          <button 
+            onClick={() => scrollTo("#contact")} 
+            className="clay-btn-outline px-8 py-3.5 text-sm sm:text-base flex items-center gap-2"
+          >
             <FaDownload size={14} />
             Contact Me
           </button>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
-        <div className="flex flex-col items-center gap-2 text-theme-subtle" data-aos="fade-up" data-aos-delay="700">
-          <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
-          <button onClick={() => scrollTo("#about")}
-            className="w-8 h-8 flex items-center justify-center rounded-full glass hover:border-indigo-500/40 transition-all duration-300 animate-bounce">
-            <FaArrowDown size={12} className="text-indigo-400" />
+        <motion.div 
+          variants={itemVariants}
+          className="flex flex-col items-center gap-2 text-theme-subtle"
+        >
+          <span className="text-xs font-semibold tracking-widest uppercase">Scroll</span>
+          <button 
+            onClick={() => scrollTo("#about")}
+            className="w-8 h-8 flex items-center justify-center rounded-full clay bg-white hover:bg-[var(--bg-secondary)] transition-all duration-300 animate-bounce"
+          >
+            <FaArrowDown size={12} className="text-[var(--accent-color)]" />
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

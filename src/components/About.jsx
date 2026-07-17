@@ -1,7 +1,7 @@
 import React from "react";
-import { FaCode, FaLightbulb, FaRocket, FaGraduationCap, FaBolt, FaDatabase } from "react-icons/fa";
+import { FaCode, FaGraduationCap, FaBolt, FaDatabase } from "react-icons/fa";
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from "react-icons/si";
-import Card3D from "./Card3D";
+import { motion } from "framer-motion";
 
 const stats = [
   { label: "Projects Built", value: "10+" },
@@ -11,111 +11,145 @@ const stats = [
 ];
 
 const highlights = [
-  { icon: <FaCode className="text-indigo-400" />, title: "Full-Stack Development", desc: "Building scalable MERN applications with clean architecture, REST APIs, and JWT auth." },
-  { icon: <FaBolt className="text-yellow-400" />, title: "Real-Time Systems", desc: "Implementing WebSockets for instant data transfer and live features, as seen in SharePod." },
-  { icon: <FaDatabase className="text-pink-400" />, title: "Data-Driven Platforms", desc: "Developing complex platforms with data analytics and external API integrations like AgriConnect." },
-  { icon: <FaGraduationCap className="text-emerald-400" />, title: "Continuous Learning", desc: "Always exploring new tech—from modern UI frameworks to cloud deployment strategies." },
+  { icon: <FaCode className="text-[var(--accent-color)]" />, title: "Full-Stack Development", desc: "Building MERN applications with clean REST APIs and JWT auth." },
+  { icon: <FaBolt className="text-[var(--accent-color)]" />, title: "Real-Time Systems", desc: "Implementing WebSockets for instant data transfer and live features." },
+  { icon: <FaDatabase className="text-[var(--accent-color)]" />, title: "Data-Driven Platforms", desc: "Developing complex platforms with data analytics and external API integrations." },
+  { icon: <FaGraduationCap className="text-[var(--accent-color)]" />, title: "Continuous Learning", desc: "Exploring new tech—from modern UI frameworks to cloud deployment strategies." },
 ];
 
 const About = () => {
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 section-bg flex items-start justify-center">
+    <section className="min-h-screen py-24 px-4 sm:px-6 flex items-start justify-center">
       <div className="max-w-6xl w-full mx-auto">
         {/* Header */}
-        <div className="text-center mb-14" data-aos="fade-down">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-indigo-400 glass rounded-full border border-indigo-500/20 mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-[var(--accent-color)] clay bg-[var(--bg-card)] mb-4">
             Who I Am
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-theme-primary">
+          <h2 className="text-4xl sm:text-5xl font-black text-theme-primary">
             About <span className="gradient-text">Me</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-10 items-start mb-14">
+        <div className="grid lg:grid-cols-2 gap-10 items-stretch mb-14">
           {/* Bio */}
-          <div data-aos="fade-right" data-aos-delay="100" className="h-full">
-            <Card3D className="h-full" intensity={8}>
-              <div className="glass rounded-2xl p-7 border border-white/5 h-full">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center">
-                    <span className="text-2xl">👋</span>
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="h-full"
+          >
+            <div className="clay p-8 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-2xl border border-theme bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--accent-color)] font-bold text-lg">
+                    DH
                   </div>
                   <div>
-                    <p className="text-xs text-theme-subtle font-medium uppercase tracking-wider">Developer</p>
+                    <p className="text-xs text-theme-subtle font-bold uppercase tracking-wider">Developer</p>
                     <h3 className="text-xl font-bold text-theme-primary">Devang Hingladiya</h3>
                   </div>
                 </div>
-                <p className="text-theme-muted leading-relaxed mb-4">
-                  I'm a passionate <span className="text-indigo-400 font-semibold">Full-Stack MERN Developer</span> who enjoys building scalable, efficient, and interactive web applications. I focus on turning ideas into real-world solutions using clean code, practical design, and a problem-solving mindset.
+                <p className="text-theme-muted leading-relaxed mb-4 text-sm sm:text-base">
+                  I'm a passionate <span className="text-[var(--accent-color)] font-semibold">Full-Stack MERN Developer</span> who enjoys building scalable, efficient, and interactive web applications. I focus on turning ideas into real-world solutions using clean code, practical design, and a problem-solving mindset.
                 </p>
-                <p className="text-theme-subtle leading-relaxed">
-                  My journey is fueled by curiosity and purpose.I’ve worked on projects like<span className="text-theme-primary font-medium">AgriConnect</span>, where I built features that address real user needs, along with responsive web applications that prioritize performance and usability. I’m comfortable working across the full stack—from designing intuitive frontends in React to building robust backend APIs with Node.js, Express, and MongoDB.
+                <p className="text-theme-muted leading-relaxed text-sm sm:text-base">
+                  My journey is fueled by curiosity and purpose. I've worked on projects like <span className="text-theme-primary font-semibold">AgriConnect</span>, where I built features that address real user needs, along with responsive web applications that prioritize performance and usability. I'm comfortable working across the full stack—from designing intuitive frontends in React to building robust backend APIs with Node.js, Express, and MongoDB.
                 </p>
-
-                {/* Tech stack pills */}
-                <div className="flex flex-wrap gap-2 mt-6">
-                  {[
-                    { Icon: SiMongodb, label: "MongoDB", color: "text-green-400" },
-                    { Icon: SiExpress, label: "Express", color: "text-slate-300" },
-                    { Icon: SiReact, label: "React.js", color: "text-blue-400" },
-                    { Icon: SiNodedotjs, label: "Node.js", color: "text-green-500" },
-                  ].map(({ Icon, label, color }) => (
-                    <span key={label} className={`flex items-center gap-1.5 px-3 py-1.5 glass rounded-lg text-xs font-medium ${color} border border-white/5`}>
-                      <Icon size={13} />
-                      {label}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </Card3D>
-          </div>
 
-          {/* Stats */}
-          <div data-aos="fade-left" data-aos-delay="200">
-            <div className="grid grid-cols-2 gap-4 mb-6">
+              {/* Tech stack pills */}
+              <div className="flex flex-wrap gap-2 mt-6">
+                {[
+                  { Icon: SiMongodb, label: "MongoDB" },
+                  { Icon: SiExpress, label: "Express" },
+                  { Icon: SiReact, label: "React.js" },
+                  { Icon: SiNodedotjs, label: "Node.js" },
+                ].map(({ Icon, label }) => (
+                  <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 border border-theme rounded-xl text-xs font-semibold text-theme-muted bg-[var(--bg-secondary)]">
+                    <Icon size={13} className="text-[var(--accent-color)]" />
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats & Quote */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col justify-between gap-6"
+          >
+            <div className="grid grid-cols-2 gap-6">
               {stats.map(({ label, value }) => (
-                <Card3D key={label} intensity={20} scale={1.03} className="h-full">
-                  <div className="glass rounded-2xl p-5 text-center border border-white/5 h-full">
-                    <p className="text-3xl font-extrabold gradient-text mb-1">{value}</p>
-                    <p className="text-xs text-theme-subtle font-medium uppercase tracking-wider">{label}</p>
-                  </div>
-                </Card3D>
+                <div key={label} className="clay p-6 text-center">
+                  <p className="text-3xl sm:text-4xl font-black gradient-text mb-1">{value}</p>
+                  <p className="text-xs text-theme-subtle font-bold uppercase tracking-wider">{label}</p>
+                </div>
               ))}
             </div>
 
             {/* Quote */}
-            <Card3D intensity={10} scale={1.01}>
-              <div className="glass rounded-2xl p-5 border border-indigo-500/15">
-                <p className="text-theme-muted italic text-sm leading-relaxed">
-                  "My goal is to develop experiences that feel <span className="text-theme-primary font-semibold">alive</span>, <span className="text-theme-primary font-semibold">intelligent</span>, and <span className="text-theme-primary font-semibold">purposeful</span>. Currently exploring AI integrations and real-time web apps."
-                </p>
-                <p className="text-indigo-400 font-semibold text-sm mt-3">— Devang Hingladiya</p>
-              </div>
-            </Card3D>
-          </div>
+            <div className="clay p-6 flex flex-col justify-center border-l-4 border-l-[var(--accent-color)] bg-[var(--bg-card)]">
+              <p className="text-theme-muted italic text-sm sm:text-base leading-relaxed">
+                "My goal is to develop experiences that feel simple, efficient, and purposeful. Currently exploring integrations and real-time features."
+              </p>
+              <p className="text-[var(--accent-color)] font-bold text-sm mt-3">— Devang Hingladiya</p>
+            </div>
+          </motion.div>
         </div>
 
         {/* Highlights Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {highlights.map(({ icon, title, desc }, i) => (
-            <div
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {highlights.map(({ icon, title, desc }) => (
+            <motion.div
               key={title}
-              data-aos="fade-up"
-              data-aos-delay={i * 100}
+              variants={cardVariants}
+              className="clay p-6 flex flex-col h-full hover:-translate-y-1 transition-all duration-300"
             >
-              <Card3D intensity={15} scale={1.03} className="h-full">
-                <div className="glass rounded-2xl p-5 border border-white/5 h-full">
-                  <div className="w-10 h-10 rounded-xl glass flex items-center justify-center mb-4 text-lg">
-                    {icon}
-                  </div>
-                  <h4 className="text-theme-primary font-semibold text-sm mb-2">{title}</h4>
-                  <p className="text-theme-subtle text-xs leading-relaxed">{desc}</p>
-                </div>
-              </Card3D>
-            </div>
+              <div className="w-10 h-10 rounded-xl bg-[var(--bg-secondary)] border border-theme flex items-center justify-center mb-4 text-base">
+                {icon}
+              </div>
+              <h4 className="text-theme-primary font-bold text-sm mb-2">{title}</h4>
+              <p className="text-theme-subtle text-xs leading-relaxed">{desc}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,30 +2,31 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaLinkedinIn, FaGithub, FaPaperPlane } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const contactInfo = [
   {
-    icon: <MdEmail className="text-indigo-400" size={20} />,
+    icon: <MdEmail size={20} />,
     label: "Email",
     value: "pateldevang301@gmail.com",
-    href: "mailto:[pateldevang301@gmail.com]",
+    href: "mailto:pateldevang301@gmail.com",
   },
   {
-    icon: <FaLinkedinIn className="text-blue-400" size={18} />,
+    icon: <FaLinkedinIn size={18} />,
     label: "LinkedIn",
     value: "in/devanghingladiya",
     href: "https://www.linkedin.com/in/devanghingladiya/",
   },
   {
-    icon: <FaGithub className="text-slate-300" size={18} />,
+    icon: <FaGithub size={18} />,
     label: "GitHub",
     value: "github.com/devang94200",
     href: "https://github.com/devang94200",
   },
   {
-    icon: <MdLocationOn className="text-pink-400" size={20} />,
+    icon: <MdLocationOn size={20} />,
     label: "Location",
-    value: "Gujrat",
+    value: "Gujarat",
     href: null,
   },
 ];
@@ -60,27 +61,39 @@ const Contact = () => {
   };
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 section-bg flex items-start justify-center">
+    <section className="min-h-screen py-24 px-4 sm:px-6 flex items-start justify-center">
       <div className="max-w-5xl w-full mx-auto">
         {/* Header */}
-        <div className="text-center mb-14" data-aos="fade-down">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-indigo-400 glass rounded-full border border-indigo-500/20 mb-4">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-[var(--accent-color)] clay bg-[var(--bg-card)] mb-4">
             Get In Touch
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-theme-primary">
+          <h2 className="text-4xl sm:text-5xl font-black text-theme-primary">
             Let's <span className="gradient-text">Connect</span>
           </h2>
           <p className="text-theme-subtle mt-4 max-w-xl mx-auto text-sm leading-relaxed">
-            Have a project in mind? Want to collaborate? I'd love to hear from you. Drop a message and I'll get back to you promptly.
+            Have a project in mind? Want to collaborate? Drop a message and I'll get back to you promptly.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Contact Info Panel */}
-          <div className="lg:col-span-2 space-y-4" data-aos="fade-right" data-aos-delay="100">
-            <div className="glass rounded-2xl p-6 border border-white/5 mb-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2 space-y-4"
+          >
+            <div className="clay p-6 mb-6">
               <h3 className="text-theme-primary font-bold text-lg mb-1">Let's innovate together</h3>
-              <p className="text-theme-subtle text-sm">
+              <p className="text-theme-muted text-sm leading-relaxed">
                 I'm currently open to freelance work and full-time opportunities.
               </p>
             </div>
@@ -88,37 +101,43 @@ const Contact = () => {
             {contactInfo.map(({ icon, label, value, href }) => (
               <div
                 key={label}
-                className="glass rounded-xl px-5 py-4 border border-white/5 flex items-center gap-4 glass-hover"
+                className="clay px-5 py-4 flex items-center gap-4 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[var(--bg-secondary)] border border-theme flex items-center justify-center flex-shrink-0 text-[var(--accent-color)]">
                   {icon}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-theme-subtle text-xs font-medium uppercase tracking-wider">{label}</p>
+                  <p className="text-theme-subtle text-xs font-bold uppercase tracking-wider">{label}</p>
                   {href ? (
                     <a
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-theme-primary text-sm font-medium hover:text-indigo-400 transition-colors truncate block"
+                      className="text-theme-primary text-sm font-semibold hover:text-[var(--accent-color)] transition-colors truncate block"
                     >
                       {value}
                     </a>
                   ) : (
-                    <p className="text-theme-primary text-sm font-medium">{value}</p>
+                    <p className="text-theme-primary text-sm font-semibold">{value}</p>
                   )}
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Form */}
-          <div className="lg:col-span-3" data-aos="fade-left" data-aos-delay="200">
-            <div className="glass rounded-2xl p-6 sm:p-8 border border-white/5">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-3"
+          >
+            <div className="clay p-6 sm:p-8 bg-[var(--bg-card)]">
               <form ref={form} onSubmit={sendEmail} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-theme-subtle text-xs font-medium uppercase tracking-wider mb-2">
+                    <label className="block text-theme-subtle text-xs font-bold uppercase tracking-wider mb-2">
                       Your Name
                     </label>
                     <input
@@ -126,11 +145,11 @@ const Contact = () => {
                       type="text"
                       placeholder="John Doe"
                       required
-                      className="form-input"
+                      className="form-input font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-theme-subtle text-xs font-medium uppercase tracking-wider mb-2">
+                    <label className="block text-theme-subtle text-xs font-bold uppercase tracking-wider mb-2">
                       Email Address
                     </label>
                     <input
@@ -138,25 +157,25 @@ const Contact = () => {
                       type="email"
                       placeholder="john@example.com"
                       required
-                      className="form-input"
+                      className="form-input font-medium"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-theme-subtle text-xs font-medium uppercase tracking-wider mb-2">
+                  <label className="block text-theme-subtle text-xs font-bold uppercase tracking-wider mb-2">
                     Subject
                   </label>
                   <input
                     name="subject"
                     type="text"
                     placeholder="Project Collaboration"
-                    className="form-input"
+                    className="form-input font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-theme-subtle text-xs font-medium uppercase tracking-wider mb-2">
+                  <label className="block text-theme-subtle text-xs font-bold uppercase tracking-wider mb-2">
                     Message
                   </label>
                   <textarea
@@ -164,26 +183,26 @@ const Contact = () => {
                     placeholder="Tell me about your project..."
                     rows={5}
                     required
-                    className="form-input resize-none"
+                    className="form-input resize-none font-medium"
                   />
                 </div>
 
                 {/* Status messages */}
                 {status === "success" && (
-                  <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
-                    ✅ Message sent successfully! I'll get back to you soon.
+                  <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-250 text-emerald-700 text-sm font-semibold">
+                    Message sent successfully! I'll get back to you soon.
                   </div>
                 )}
                 {status === "error" && (
-                  <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                    ❌ Something went wrong. Please try again.
+                  <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-rose-50 border border-rose-250 text-rose-700 text-sm font-semibold">
+                    Something went wrong. Please try again.
                   </div>
                 )}
 
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="btn-glow w-full py-3.5 px-8 flex items-center justify-center gap-2 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="clay-btn w-full py-3.5 px-8 flex items-center justify-center gap-2 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === "sending" ? (
                     <>
@@ -192,14 +211,14 @@ const Contact = () => {
                     </>
                   ) : (
                     <>
-                      <FaPaperPlane size={14} />
+                      <FaPaperPlane size={13} />
                       Send Message
                     </>
                   )}
                 </button>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
